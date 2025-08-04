@@ -46,7 +46,6 @@ jobs:
 
           # Build image with cache-from
           docker build \
-            --target production \
             --cache-from="$PREVIOUS_IMAGE" \
             -t "$TAG" \
             -f Dockerfile \
