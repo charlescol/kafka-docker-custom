@@ -11,15 +11,14 @@ RUN mkdir -p /opt/pyroscope && \
     chmod 644 /opt/pyroscope/pyroscope.jar
 
 # Wrapper
-RUN bash -c 'cat <<EOF > /opt/kafka/bin/run_with_pyroscope.sh
-#!/usr/bin/env bash
-set -euo pipefail
-export PYROSCOPE_APPLICATION_NAME="\${HOSTNAME:-kafka-broker}"
-exec /opt/kafka/bin/kafka_run.sh "\$@"
-EOF'
-
-RUN chmod +x /opt/kafka/bin/run_with_pyroscope.sh && \
-    chown 1001:0 /opt/kafka/bin/run_with_pyroscope.sh
+RUN printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  'set -euo pipefail' \
+  'export PYROSCOPE_APPLICATION_NAME="${HOSTNAME:-kafka-broker}"' \
+  'exec /opt/kafka/kafka_run.sh "$@"' \
+  > /opt/kafka/bin/run_with_pyroscope.sh && \
+  chmod +x /opt/kafka/bin/run_with_pyroscope.sh && \
+  chown 1001:0 /opt/kafka/bin/run_with_pyroscope.sh
 
 USER 1001
 ENTRYPOINT ["/usr/bin/tini","-w","-s","--","/opt/kafka/bin/run_with_pyroscope.sh"]
