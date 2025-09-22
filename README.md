@@ -4,6 +4,8 @@
 
 This image builds upon the official Strimzi Operator for Apache Kafka, adding custom extensions to the image.
 
+`HOSTNAME` must be defined by the container runtime (usually set automatically by Docker/Kubernetes for each container)
+
 ## Included Features
 
 - Based on the **official Strimzi Kafka Docker image**
@@ -12,3 +14,4 @@ This image builds upon the official Strimzi Operator for Apache Kafka, adding cu
 ## License
 
 This repository is licensed under the MIT license. See [LICENSE](LICENSE) for more information.
+
