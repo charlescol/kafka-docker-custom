@@ -11,7 +11,6 @@ This image builds upon the official Strimzi Operator for Apache Kafka, adding cu
 - Based on the **official Strimzi Kafka Docker image**
 - Integrated support for **Pyroscope**
 
-## License
 
-This repository is licensed under the MIT license. See [LICENSE](LICENSE) for more information.
+Prebuilt image available on Docker Hub: [docker.io/charlescol01/kafka-docker-custom:latest](https://hub.docker.com/repository/docker/charlescol01/kafka-docker-custom/general)
 
